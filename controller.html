@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ngstudy">
+<head>
+    <meta charset="UTF-8">
+    <title>estudo controller</title>
+</head>
+<body data-ng-controller="UserController">
+    <h1>{{ title }}</h1>
+
+    <ul>
+        <li data-ng-repeat="user in users">
+            {{ user.name }} - {{ user.email }}
+        </li>
+    </ul>
+
+    <div data-ng-controller="CursoController">
+        <h1>{{ title }}</h1>
+        <ul>
+            <li data-ng-repeat="curso in cursos">
+                {{ curso.name }} - {{ curso.teacher }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module('ngstudy', [])
+        .controller('UserController', UserController)
+        .controller('CursoController', CursoController);
+
+        function UserController($scope){
+            $scope.title = "Estudo de Angular - controller";
+            $scope.users = [
+                {name: "rodrigo", email:'rodrigoeddie@gmail.com'},
+                {name: "fulano", email:'fulano@gmail.com'},
+                {name: "cicrano", email:'cicrano@gmail.com'}
+            ];
+        };
+
+        function CursoController($scope){
+            $scope.title = "Estudo de Angular - controller - filho";
+            $scope.cursos = [
+                {name: "BeMean", teacher:'suissa'},
+                {name: "arduino", teacher:'fulano'},
+                {name: "javascript", teacher:'cicrano'}
+            ];
+        };
+        UserController['$inject'] = ['$scope'];
+    </script>
+</body>
+</html>
