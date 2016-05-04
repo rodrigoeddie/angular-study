@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="ngstudy">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+    <label for="nome">
+        nome:
+        <input type="text" name="nome" data-ng-model="nome">
+
+    </label>
+    <p>escreve algo aqui que será filtrado: <b>{{nome | fnfilterRevertText | uppercase}}</b> existem alguns filtros padrão, como upercase e lowercase</p>
+
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module('ngstudy', [])
+        .filter('fnfilterRevertText', function(){
+            return function(text){
+                if (text) return text.split('').reverse().join('')
+            }
+        });
+    </script>
+</body>
+</html>
